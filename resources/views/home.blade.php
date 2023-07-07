@@ -46,7 +46,7 @@
                         <ul class="list-group">
                             @foreach ($posts as $post)
                                 <li class="list-group-item">
-                                    <a href="#">{{ $post->title }}</a> - {{ $post->updated_at }}
+                                    <a href="{{route('posts.show', $post->id)}}">{{ $post->title }}</a> - {{ $post->updated_at }}
                                 </li>
                             @endforeach
                         </ul>

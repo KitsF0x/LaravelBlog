@@ -43,14 +43,16 @@
                                 <button type="submit" class="btn btn-primary">
                                     Create
                                 </button>
-                                <a href="{{route("posts.index")}}">
-                                    <button class="btn btn-primary">
-                                        Cancel
-                                    </button>
-                                </a>
                             </div>
                         </div>
                     </form>
+                    <div class="row mt-3">
+                        <div class="col-md-6 offset-md-4">
+                            <a href="{{ route('posts.index') }}" class="btn btn-primary">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

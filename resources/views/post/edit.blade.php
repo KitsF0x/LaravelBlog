@@ -29,7 +29,7 @@
                             <label for="content" class="col-md-4 col-form-label text-md-end">Content</label>
 
                             <div class="col-md-6">
-                                <textarea id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" required autocomplete="content" autofocus>{{$post->title}}</textarea>
+                                <textarea id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" required autocomplete="content" autofocus>{{$post->content}}</textarea>
 
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
@@ -43,11 +43,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     Update
                                 </button>
-                                <a href="{{redirect()->back()}}">
-                                    <button class="btn btn-primary">
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6 offset-md-4">
+                                    <a href="{{route('posts.index')}}" class="btn btn-primary">
                                         Cancel
-                                    </button>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </form>

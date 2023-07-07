@@ -25,9 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            "posts" => Post::all(),
-            "posts_count" => Post::count(),
-            "users_count" => User::count()
+            "posts" => Post::all()
         ]);
     }
 }

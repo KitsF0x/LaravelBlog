@@ -32,10 +32,10 @@
                     <div class="card-header">Statystyki strony</div>
                     <div class="card-body">
                         <p>Odwiedzin: N/A</p>
-                        <p>Postów: {{$posts_count}}</p>
-                        <p>Komentarzy: {{App\Models\Comment::count()}}</p>
+                        <p>Postów: {{ App\Models\Post::count() }}</p>
+                        <p>Komentarzy: {{ App\Models\Comment::count() }}</p>
                         <p>Wyświetleń postów: N/A</p>
-                        <p>Użytkowników: {{$users_count}}</p>
+                        <p>Użytkowników: {{ App\Models\User::count() }}</p>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,8 @@
                         <ul class="list-group">
                             @foreach ($posts as $post)
                                 <li class="list-group-item">
-                                    <a href="{{route('posts.show', $post->id)}}">{{ $post->title }}</a> - {{ $post->updated_at }}
+                                    <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a> -
+                                    {{ $post->updated_at }}
                                 </li>
                             @endforeach
                         </ul>

@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    const CONTENT_STRING_CHAR_LIMIT = 500;
+    
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        return view('post.index', [
+            "posts" => Post::all(),
+            "str_limit" => self::CONTENT_STRING_CHAR_LIMIT
+        ]);
     }
 
     /**

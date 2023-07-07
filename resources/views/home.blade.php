@@ -32,10 +32,10 @@
                     <div class="card-header">Statystyki strony</div>
                     <div class="card-body">
                         <p>Odwiedzin: N/A</p>
-                        <p>Postów: N/A</p>
+                        <p>Postów: {{$posts_count}}</p>
                         <p>Komentarzy: N/A</p>
                         <p>Wyświetleń postów: N/A</p>
-                        <p>Użytkowników: N/A</p>
+                        <p>Użytkowników: {{$users_count}}</p>
                     </div>
                 </div>
             </div>

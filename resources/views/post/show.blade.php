@@ -13,6 +13,15 @@
                         </p>
                         <hr>
                         <p class="card-text">{{ $post->content }}</p>
+                        <div class="d-flex">
+                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary mr-2">Wyświetl</a>
+                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning mr-2">Edytuj</a>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Usuń</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

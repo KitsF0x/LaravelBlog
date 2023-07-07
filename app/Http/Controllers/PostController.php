@@ -52,24 +52,35 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(int $id)
     {
-        //
+        $dream = Post::findOrFail($id);
+        return view('post.edit', [
+            "post" => $dream
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, int $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+    
+        $post->save();
+        return redirect(route("posts.index"));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(int $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+    
+        return redirect(route("posts.index"));
     }
 }

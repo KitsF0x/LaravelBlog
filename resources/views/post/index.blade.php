@@ -12,10 +12,13 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ Str::limit($post->content, $str_limit, "...") }}</p>
+                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary mr-2">Show</a>
                         </div>
                     </div>
                 @endforeach
+                <a href="{{ route('posts.create') }}" class="btn btn-primary mr-2">Add new post</a>
             </div>
+
         </div>
     </div>
 @endsection

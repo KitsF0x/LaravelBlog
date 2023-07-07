@@ -42,9 +42,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        return view('post.show', [
+            "post" => Post::findOrFail($id)
+        ]);
     }
 
     /**

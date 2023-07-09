@@ -43,3 +43,8 @@ Route::middleware(['can:isAdmin'])->group(function() {
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'panel'])->name('admin.panel');
     Route::get('/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
 });
+
+// Manage users
+Route::middleware(['can:isAdmin'])->group(function() {
+    Route::post('/user/ban/{id}', [App\Http\Controllers\UserManagementController::class, 'changeBanStatus'])->name('users.management.ban');
+});

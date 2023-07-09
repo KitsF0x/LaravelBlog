@@ -82,7 +82,9 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-    
+        $commentsOfThePost = Comment::where('post_id', $id);
+        $commentsOfThePost->delete();
+
         return redirect(route("posts.index"));
     }
 }

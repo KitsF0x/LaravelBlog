@@ -64,11 +64,17 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @can('isAdmin')
-                                    <a class="dropdown-item" href="{{ route('posts.index') }}">
-                                        Posts
-                                    </a>
+                                        <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                            Posts
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.panel') }}">
+                                            Panel administratora
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('admin.users') }}">
+                                            Lista użytkowników
+                                        </a>
                                     @endcan
-                                    
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

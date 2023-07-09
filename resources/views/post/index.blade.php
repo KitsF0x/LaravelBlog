@@ -16,9 +16,10 @@
                         </div>
                     </div>
                 @endforeach
-                <a href="{{ route('posts.create') }}" class="btn btn-primary mr-2">Add new post</a>
+                @can('isAdmin')
+                    <a href="{{ route('posts.create') }}" class="btn btn-primary mr-2">Add new post</a>
+                @endcan
             </div>
-
         </div>
     </div>
 @endsection

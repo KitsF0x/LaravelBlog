@@ -33,7 +33,7 @@ Route::middleware(['can:isAdmin'])->group(function () {
 Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 // Comments
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'can:isUserNotBanned'])->group(function () {
     Route::post('/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comments/{id}', [App\Http\Controllers\CommentController::class, 'destroy'])->name('comments.destroy');
 });

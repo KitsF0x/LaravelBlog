@@ -26,6 +26,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->defineUserRoleGate('isAdmin', UserRole::ADMIN);
         $this->defineUserRoleGate('isUser', UserRole::USER);
+        Gate::define('isUserNotBanned', function(User $user) {
+            return $user->isBanned == false;
+        });
     }
     private function defineUserRoleGate(string $name, string $role) 
     {

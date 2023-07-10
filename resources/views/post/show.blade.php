@@ -24,7 +24,7 @@
                         <p class="card-text">{{ $post->content }}</p>
 
 
-                        @auth
+                        @can('isUserNotBanned')
                             <div class="card border">
                                 <div class="card-body">
                                     <form action="{{ route('comments.store') }}" method="POST">
@@ -55,7 +55,7 @@
                                     </form>
                                 </div>
                             </div>
-                        @endauth
+                        @endcan
                         <br>
                         @foreach ($comments as $comment)
                             <div class="card mb-3">

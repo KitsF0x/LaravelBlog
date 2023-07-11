@@ -48,3 +48,6 @@ Route::middleware(['can:isAdmin'])->group(function() {
 Route::middleware(['can:isAdmin'])->group(function() {
     Route::post('/user/ban/{id}', [App\Http\Controllers\UserManagementController::class, 'changeBanStatus'])->name('users.management.ban');
 });
+
+// Rating
+Route::post('/ratings', [App\Http\Controllers\PostRatingController::class, 'store'])->name('ratings.store');

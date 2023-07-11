@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\PostRating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -47,7 +49,8 @@ class PostController extends Controller
     {
         return view('post.show', [
             "post" => Post::findOrFail($id),
-            "comments" => Comment::where('post_id', $id)->orderBy('created_at', 'DESC')->get()
+            "comments" => Comment::where('post_id', $id)->orderBy('created_at', 'DESC')->get(),
+            'user_rating_value' => $this->userPostRating()
         ]);
     }
 
@@ -86,5 +89,16 @@ class PostController extends Controller
         $commentsOfThePost->delete();
 
         return redirect(route("posts.index"));
+    }
+
+
+    private function userPostRating() {
+        $rating = PostRating::where('user_id', Auth::id())->first();
+        if($rating) {
+            return $rating->rating_value;
+        }
+        else {
+            return 0;
+        }
     }
 }

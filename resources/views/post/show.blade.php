@@ -22,8 +22,6 @@
 
                         <hr>
                         <p class="card-text">{{ $post->content }}</p>
-
-
                         @can('isUserNotBanned')
                             <div class="card border">
                                 <div class="card-body">
@@ -53,7 +51,28 @@
                                             </div>
                                         </div>
                                     </form>
+
                                 </div>
+                                <hr>
+                                <div class="mb-3 row">
+                                    <label for="rating" class="col-md-5 col-form-label text-md-end">Twoja ocena</label>
+                                    <div class="col-md-6">
+                                        <form action="{{ route('ratings.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            <div class="btn-group" role="group" aria-label="Post Rating">
+                                                @foreach(range(1, 5) as $ratingValue)
+                                                    @php
+                                                        $selectedClass = ($user_rating_value && $user_rating_value == $ratingValue) ? 'btn-primary' : 'btn-outline-primary';
+                                                    @endphp
+                                                    <button type="submit" name="rating_value" value="{{ $ratingValue }}" class="btn {{ $selectedClass }}">{{ $ratingValue }}</button>
+                                                @endforeach
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
                             </div>
                         @endcan
                         <br>

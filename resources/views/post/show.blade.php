@@ -10,14 +10,16 @@
                         <p class="card-text">
                             Created at: <strong>{{ $post->created_at->format('d.m.Y H:i') }}</strong>
                             Last update: <strong>{{ $post->updated_at->format('d.m.Y H:i') }}</strong>
-                        <div class="d-flex">
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning mr-2">Edytuj</a>
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Usuń</button>
-                            </form>
-                        </div>
+                            @can('isAdmin')
+                            <div class="d-flex">
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning mr-2">Edytuj</a>
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Usuń</button>
+                                </form>
+                            </div>
+                        @endcan()
                         </p>
 
                         <hr>
@@ -62,17 +64,18 @@
                                             <input type="hidden" name="post_id" value="{{ $post->id }}">
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                             <div class="btn-group" role="group" aria-label="Post Rating">
-                                                @foreach(range(1, 5) as $ratingValue)
+                                                @foreach (range(1, 5) as $ratingValue)
                                                     @php
-                                                        $selectedClass = ($user_rating_value && $user_rating_value == $ratingValue) ? 'btn-primary' : 'btn-outline-primary';
+                                                        $selectedClass = $user_rating_value && $user_rating_value == $ratingValue ? 'btn-primary' : 'btn-outline-primary';
                                                     @endphp
-                                                    <button type="submit" name="rating_value" value="{{ $ratingValue }}" class="btn {{ $selectedClass }}">{{ $ratingValue }}</button>
+                                                    <button type="submit" name="rating_value" value="{{ $ratingValue }}"
+                                                        class="btn {{ $selectedClass }}">{{ $ratingValue }}</button>
                                                 @endforeach
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         @endcan
                         <br>

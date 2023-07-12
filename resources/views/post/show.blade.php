@@ -91,7 +91,7 @@
                                 </p>
                                 <p>{{ $comment->content }}</p>
                                 @auth
-                                    @if (Auth::id() === $comment->user_id)
+                                    @if (Auth::id() === $comment->user_id || $is_current_user_admin)
                                         <form action="{{ route('comments.destroy', $comment->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

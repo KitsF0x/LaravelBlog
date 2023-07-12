@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRole;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PostRating;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     const CONTENT_STRING_CHAR_LIMIT = 500;
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -50,7 +51,8 @@ class PostController extends Controller
         return view('post.show', [
             "post" => Post::findOrFail($id),
             "comments" => Comment::where('post_id', $id)->orderBy('created_at', 'DESC')->get(),
-            'user_rating_value' => $this->userPostRating()
+            'user_rating_value' => $this->userPostRating(),
+            'is_current_user_admin' => (Auth::user()->role == UserRole::ADMIN)
         ]);
     }
 
@@ -73,7 +75,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->title = $request->input('title');
         $post->content = $request->input('content');
-    
+
         $post->save();
         return redirect(route("posts.index"));
     }
